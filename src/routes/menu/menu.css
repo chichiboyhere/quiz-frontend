@@ -1,0 +1,26 @@
+.menuTray{
+    display: block;
+    border: 2px solid gray;
+    background-color: gray;
+    padding: 10px;
+    border-radius: 10px;
+    margin: auto; 
+    max-width: 40%;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.menu{
+    border-radius: 25px;
+    padding: 5px;
+    margin: 10px;
+    border: 3px solid white;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.menu > a{
+    text-decoration: none;
+}
+
+

@@ -1,0 +1,106 @@
+/* .container{
+    padding: 5px;
+    font-family: sans-serif;
+    text-align: center;
+}
+.problem{
+    font-size: 72px;
+    color:blue;
+}
+.test input{
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 7px;
+}
+
+.test h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.test h2{
+    font-size: 20px;
+}
+
+.test h3{
+    font-size: 18px;
+}
+
+.showSaved{
+    border: 2px solid green;
+    background-color: teal;
+    color: white;
+    padding: 8px;
+    text-align: center;
+    animation: showSaved-appear 1s ease-out forwards;
+}
+
+  
+  @keyframes showSaved-appear {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  
+.errorMessage{
+  border: 2px solid red;
+  background-color: palevioletred; 
+}
+
+.loadingMessage{
+  border: 2px solid yellow;
+  background-color: goldenrod;
+  
+}
+
+.successMessage{
+  border: 2px solid green;
+  background-color: rgb(112, 216, 155); 
+}
+
+
+.App {
+  background-color: #252628;
+  width: 100%;
+  height: 100vh;
+  font-family: monospace;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: shrink 5s infinite alternate;
+  position: relative;
+}
+
+p {
+  margin: 0;
+}
+
+span {
+  margin: 0;
+} */
+
+.MultiplicationGame {
+  background-color: #252628;
+  width: 100%;
+  height: 100vh;
+  font-family: monospace;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  animation: shrink 5s infinite alternate;
+  position: relative;
+}
+
+p {
+  margin: 0;
+}
+
+span {
+  margin: 0;
+}
