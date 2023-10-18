@@ -7,6 +7,7 @@ import {QuizContext} from '../../context/QuizContext';
 import './multiplicationGame.css';
 
 
+
 const MultiplicationGame = () => {
   const [timer, setTimer] = useState(60);
   const [enteredTable, setEnteredTable] = useState("");

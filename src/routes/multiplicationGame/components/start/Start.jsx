@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { QuizContext } from '../../../../context/QuizContext';
-import { FaHome } from "react-icons/fa"
+import { FaHome } from "react-icons/fa";
+import { AuthContext } from '../../../../context/AuthContext';
 import './start.css';
 
 const Start = () => {
@@ -8,6 +10,9 @@ const Start = () => {
     const { enteredTable, setEnteredTable } = useContext(QuizContext);
     const d = new Date();
     var minutes;
+    
+
+    const { user} = useContext(AuthContext);
 
     if(d.getMinutes() < 10) {
         minutes="0"+d.getMinutes();
@@ -45,7 +50,7 @@ const Start = () => {
             </div>
             <div className="terminal-bot">
                 {/* Welcome message */}
-                <p className="terminal-prompt last-login fadeIn delay-2">Hello User! Ready for the Multiplication Game?</p>
+                {user ? <p className="terminal-prompt last-login fadeIn delay-2">Hello  {user.name}! Ready for the Multiplication Game?</p>: <p className="terminal-prompt last-login fadeIn delay-2">Hello user! Ready for the Multiplication Game? </p>}
                
                 <p className="terminal-prompt fadeIn delay-4_5"><span className="terminal-green">{d.getHours()}:{minutes}</span> Please enter a multiplication table limit</p>
                 <p className="terminal-prompt fadeIn delay-4_5"><span className="terminal-green">{d.getHours()}:{minutes}</span>
@@ -58,13 +63,18 @@ const Start = () => {
                     onChange={tableChangeHandler}
                     required
                     />
-                </p>
-                {/* Start button */}
+                </p>                {/* Start button */}
                 <div className="mt-10 terminal-prompt terminal-text terminal-start">
                     <p className="terminal-green fadeIn delay-10">{d.getHours()}:{minutes}
                     <button  disabled={enteredTable === "" } onClick={() => { setGameState("quiz"); }} className="fadeIn delay-10_5 startBtn button-transition">Start</button>
                     </p>
                     
+                   
+                </div>
+                <div className="mt-10 terminal-prompt terminal-text terminal-start">
+                <p className="terminal-green fadeIn delay-10">{d.getHours()}:{minutes}
+                    <Link to="/"><button  className="fadeIn delay-10_5 startBtn button-transition">Menu</button></Link>
+                </p>
                 </div>
             </div>
         </div>

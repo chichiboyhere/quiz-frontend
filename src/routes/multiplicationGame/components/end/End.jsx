@@ -1,9 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { QuizContext } from '../../../../context/QuizContext';
-import { FaHome } from "react-icons/fa"
+import { FaHome } from "react-icons/fa";
 import './end.css';
+import { AuthContext } from '../../../../context/AuthContext';
+import axios from 'axios';
+import {Link,  useNavigate } from 'react-router-dom';
 
 const End = () => {
+    const [error, setError] = useState(false);
     const { gameState, setGameState } = useContext(QuizContext);
     const { score, setScore } = useContext(QuizContext);
     const { timer, setTimer } = useContext(QuizContext);
@@ -21,6 +25,8 @@ const End = () => {
         minutes = d.getMinutes();
 
     }
+
+    const { user} = useContext(AuthContext);
 
      // This is calculating the user's speed
   const speedCalculator = (marks, timeSpent) => {
@@ -44,6 +50,25 @@ const End = () => {
       
   //    }
   // },[speed]);
+  const navigate = useNavigate();
+
+  const handleSave = async (e) => {
+    e.preventDefault(); 
+   try{
+      const newPost = {
+       score:score,
+	   questionCount:questionCounter,
+	   user:user
+      };
+
+      await axios.post("/multiplicationResult/postResult", newPost);
+      
+      navigate("/")
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
+  };
 
 
     //Try again - show main screen, set score back to 0, set counter back to 240 seconds
@@ -82,7 +107,10 @@ const End = () => {
             <div className="terminal-bot">
                 {/* End message */}
                 <p className="terminal-prompt last-login">Multiplication Game</p>
-                <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> hello, friend</p>
+
+
+                {user ? <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>Ok {user.name}</p>:  <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> Ok, friend</p>}
+               
                 <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> our journey has come to an end.</p>
                 {/* Score */}
                 <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>  You scored: {score} / {questionCounter} (
@@ -97,6 +125,11 @@ const End = () => {
                     <p className="pl-7">Not satisfied? <button onClick={() => { reStart(); }} className="startBtn button-transition">Try again</button></p>
                 </div>
                 
+                {/* Save Result */}
+               {user? <div className="mt-25 terminal-prompt terminal-text">
+                    <p className="terminal-green">{d.getHours()}:{minutes}</p>
+                    <p className="pl-7">Want to save the result? <button onClick={handleSave} className="startBtn button-transition">Save Result</button></p>
+                </div>: <Link to="/login"><button className="startBtn button-transition">Login to Save Result</button></Link>}
             </div>
         </div>
     </div>
