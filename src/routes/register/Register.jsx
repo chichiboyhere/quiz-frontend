@@ -14,10 +14,7 @@ export default function Register() {
 ;
 	const [error, setError] = useState(false);
     const [confirmPass, setConfirmPass] = useState(false)
-	
-
-	// Handling the form submission
-	
+		
 
   const navigate = useNavigate();
 
@@ -37,7 +34,7 @@ export default function Register() {
     setConfirmPassword(e.target.value);
   };
   
-
+// Handling the form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || confirmPassword === '') {

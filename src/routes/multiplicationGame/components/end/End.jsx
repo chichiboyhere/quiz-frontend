@@ -4,7 +4,9 @@ import { FaHome } from "react-icons/fa";
 import './end.css';
 import { AuthContext } from '../../../../context/AuthContext';
 import axios from 'axios';
-import {Link,  useNavigate } from 'react-router-dom';
+import {Link, useNavigate } from 'react-router-dom';
+import ResultDisplay from '../../../../components/resultDisplay/ResultDisplay';
+import useFetch from '../../../../hooks/useFetch';
 
 const End = () => {
     const [error, setError] = useState(false);
@@ -14,6 +16,8 @@ const End = () => {
     const { enteredTable, setEnteredTable } = useContext(QuizContext);
     const { verdict, setVerdict } = useContext(QuizContext);
     const { questionCounter, setQuestionCounter } = useContext(QuizContext);
+
+   
 
     const d = new Date();
     var minutes;
@@ -63,13 +67,15 @@ const End = () => {
 
       await axios.post("/multiplicationResult/postResult", newPost);
       
-      navigate("/")
+      navigate("/multiplication")
     } catch (err) {
       console.log(err);
       setError(true);
     }
   };
 
+const userId = user._id 
+const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
 
     //Try again - show main screen, set score back to 0, set counter back to 240 seconds
     const reStart = () => {
@@ -80,6 +86,7 @@ const End = () => {
         setQuestionCounter(1)
     }
 
+    //const data = user.multiplicationResults;
     return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
             <div className="terminal-top ">
@@ -130,6 +137,15 @@ const End = () => {
                     <p className="terminal-green">{d.getHours()}:{minutes}</p>
                     <p className="pl-7">Want to save the result? <button onClick={handleSave} className="startBtn button-transition">Save Result</button></p>
                 </div>: <Link to="/login"><button className="startBtn button-transition">Login to Save Result</button></Link>}
+
+                <div className="mt-25 terminal-prompt terminal-text">
+                   <Link to ="/"> <p className="terminal-green">{d.getHours()}:{minutes} <button  className="startBtn button-transition">Back to Menu</button></p> </Link>   
+                </div>
+               
+                <div className="listResult">
+               
+                {!user? <p>Log in to save your result</p>: data.length === 0 ?<p style={{color:"white"}}>No results</p>: <ResultDisplay results={data} /> }
+          </div> 
             </div>
         </div>
     </div>

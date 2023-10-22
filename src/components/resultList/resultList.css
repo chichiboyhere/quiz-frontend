@@ -1,0 +1,24 @@
+.result-tray{
+    position: relative;
+}
+
+.results-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .results-list__fallback {
+    color: white;
+    text-align: center;
+  }
+  
+  .canceller{
+    position: absolute;
+    cursor: pointer;
+    color: aliceblue;
+    font-weight: 200;
+    font-size: 50px;
+    top: -2px;
+    right: 2px;
+  }
+  
