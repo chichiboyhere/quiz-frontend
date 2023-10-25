@@ -30,7 +30,6 @@ const End = () => {
 
     }
 
-    const { user} = useContext(AuthContext);
 
      // This is calculating the user's speed
   const speedCalculator = (marks, timeSpent) => {
@@ -40,29 +39,41 @@ const End = () => {
   let speed = speedCalculator(parseInt(score), 60);
 
  
-  // useEffect(() =>{
-  //   if (speed >= 0.45){
-  //     setVerdict("Wow, that was quite fast! Good job!"); 
+  useEffect(() =>{
+    if (speed >= 0.45){
+      setVerdict("Wow, that was quite fast! Good job!"); 
      
-  //    }
-  //    else if (speed < 0.45 && speed > 0.35){
-  //     setVerdict("Your speed was good. There is room for improvement though!");
+     }
+     else if (speed < 0.45 && speed > 0.35){
+      setVerdict("Your speed was good. There is room for improvement though!");
       
-  //    }
-  //    else{
-  //     setVerdict("That wasn't fast enough. Try harder, next time!");
-      
-  //    }
-  // },[speed]);
+     }
+     else{
+      setVerdict("That wasn't fast enough. Try harder, next time!"); 
+     }
+  },[speed]);
+
   const navigate = useNavigate();
+
+  //Try again - show main screen, set score back to 0, set counter back to 240 seconds
+  const reStart = () => {
+    setScore(0);
+    setTimer(60);
+    setGameState("start");
+    setEnteredTable("")
+    setQuestionCounter(1)
+}
+
+  const { user} = useContext(AuthContext);
+   
 
   const handleSave = async (e) => {
     e.preventDefault(); 
    try{
       const newPost = {
        score:score,
-	   questionCount:questionCounter,
-	   user:user
+	     questionCount:questionCounter,
+	     user:user
       };
 
       await axios.post("/multiplicationResult/postResult", newPost);
@@ -74,20 +85,11 @@ const End = () => {
     }
   };
 
-const userId = user._id 
-const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
+ const userId = user._id
+  
+ const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
 
-    //Try again - show main screen, set score back to 0, set counter back to 240 seconds
-    const reStart = () => {
-        setScore(0);
-        setTimer(60);
-        setGameState("start");
-        setEnteredTable("")
-        setQuestionCounter(1)
-    }
-
-    //const data = user.multiplicationResults;
-    return <div className="End fadeIn delay-0_3">
+      return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
             <div className="terminal-top ">
                 <div className="top-left">
@@ -116,16 +118,17 @@ const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
                 <p className="terminal-prompt last-login">Multiplication Game</p>
 
 
-                {user ? <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>Ok {user.name}</p>:  <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> Ok, friend</p>}
+                <p className="terminal-prompt mt-25 terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>Ok {user.name[0].toUpperCase() + user.name.substr(1)}</p>
                
-                <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> our journey has come to an end.</p>
+                <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> Our journey has come to an end for now.</p>
                 {/* Score */}
                 <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>  You scored: {score} / {questionCounter} (
                   {(score / questionCounter).toFixed(2) * 100}%)</p>
                 
-               
+                  <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> Your speed: {speed} questions per second.</p>
+                
                 {/* Depends on score get different message */}
-                <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span>  </p>
+                <p className="terminal-prompt terminal-msg"><span className="terminal-green">{d.getHours()}:{minutes} </span> {verdict} </p>
                 {/* End question */}
                 <div className="mt-25 terminal-prompt terminal-text">
                     <p className="terminal-green">{d.getHours()}:{minutes}</p>
@@ -133,10 +136,10 @@ const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
                 </div>
                 
                 {/* Save Result */}
-               {user? <div className="mt-25 terminal-prompt terminal-text">
+                <div className="mt-25 terminal-prompt terminal-text">
                     <p className="terminal-green">{d.getHours()}:{minutes}</p>
                     <p className="pl-7">Want to save the result? <button onClick={handleSave} className="startBtn button-transition">Save Result</button></p>
-                </div>: <Link to="/login"><button className="startBtn button-transition">Login to Save Result</button></Link>}
+                </div>
 
                 <div className="mt-25 terminal-prompt terminal-text">
                    <Link to ="/"> <p className="terminal-green">{d.getHours()}:{minutes} <button  className="startBtn button-transition">Back to Menu</button></p> </Link>   
@@ -144,11 +147,13 @@ const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
                
                 <div className="listResult">
                
-                {!user? <p>Log in to save your result</p>: data.length === 0 ?<p style={{color:"white"}}>No results</p>: <ResultDisplay results={data} /> }
-          </div> 
+                {data.length === 0 ? <p style={{color:"white", margin: "auto"}}>No results</p>: <ResultDisplay results={data} /> }
+              </div> 
             </div>
         </div>
     </div>
+
+
 };
 
 export default End;

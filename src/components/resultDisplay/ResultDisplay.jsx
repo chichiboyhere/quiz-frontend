@@ -17,6 +17,7 @@ const ResultDisplay = (props) => {
 
   return (
     <div className="result-display">
+      {isOpen && <div className="canceller-box"><div onClick={closeResultsHandler} className="canceller">&times;</div></div>}
       {!isOpen && <button onClick={showResultsHandler}>All Saved Results</button>}
       {isOpen && <ResultList results={props.results} onCancel={closeResultsHandler}/>}
     </div>

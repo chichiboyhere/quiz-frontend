@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { QuizContext } from '../../../../context/QuizContext';
+import { AuthContext } from '../../../../context/AuthContext';
 import { FaHome } from "react-icons/fa"
 import "./quiz.css";
 
@@ -52,19 +53,26 @@ const Quiz = () => {
         minutes = d.getMinutes();
     }
 
+    const { user} = useContext(AuthContext);
     useEffect(() => {
         
         //timer for quiz - when timer reach 0 end screen appear
         const timeOut = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
-        if (timeOut == 0) {
+        if (timeOut == 0 && user) {
             setGameState("end");
+            setScore(score);
+            setTimer(0);
+            setEnteredTable("")
+        }
+        else if (timeOut == 0 && !user){
+            setGameState("endGuest");
             setScore(score);
             setTimer(0);
             setEnteredTable("")
         }
        
         return () => clearInterval(timeOut);
-    }, [timer, setTimer, setGameState]);
+    }, [timer, setTimer, setGameState, user]);
 
     
 
@@ -119,9 +127,9 @@ const Quiz = () => {
             <div id="terminal-wrapper" className="terminal-bot">
                 
                 {/* User score */}
-                <p className="terminal-prompt mt-25 last-login"><span className="terminal-green">{d.getHours()}:{minutes}</span> your score is: {score}</p>
+                <p className="terminal-prompt mt-25 last-login"><span className="terminal-green">{d.getHours()}:{minutes}</span> Your score is: {score}</p>
                 {/* Timer */}
-                <p className="terminal-prompt last-login"><span className="terminal-green">{d.getHours()}:{minutes}</span> your time is: <span style={{color: '#FF5B52'}}>{timer}</span></p>
+                <p className="terminal-prompt last-login"><span className="terminal-green">{d.getHours()}:{minutes}</span> Your time is: <span style={{color: '#FF5B52'}}>{timer}</span></p>
                
                 <p className="terminal-prompt mt-25 last-login" >
                 <span className="terminal-green">{d.getHours()}:{minutes}</span>

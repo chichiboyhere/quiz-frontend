@@ -88,7 +88,7 @@ span {
 .MultiplicationGame {
   background-color: #252628;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   font-family: monospace;
   background-repeat: no-repeat;
   background-size: cover;

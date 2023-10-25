@@ -5,6 +5,7 @@
     padding: 0.5rem;
     margin: 1rem 0;
     background-color: #4b4b4b;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
   
   .result-item__description {
@@ -17,12 +18,12 @@
     flex: 1;
   }
   
-  .result-item h2 {
+  .result-item__description > h2 {
     color: #3a3a3a;
     font-size: 1rem;
     flex: 1;
     margin: 0 1rem;
-    color: white;
+    /* color: white; */
   }
   
   .result-item__speed {
@@ -47,3 +48,5 @@
       font-size: 1.25rem;
     }
   }
+
+  

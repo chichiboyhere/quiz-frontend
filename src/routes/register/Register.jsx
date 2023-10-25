@@ -38,10 +38,10 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (name === '' || email === '' || password === '' || confirmPassword === '') {
-        setError(true);
+        return setError(true);
     }
     else if( password !==  confirmPassword){
-        setConfirmPass(true);
+        return setConfirmPass(true);
     }
     else {
         setError(false);

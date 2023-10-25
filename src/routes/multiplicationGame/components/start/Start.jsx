@@ -13,7 +13,8 @@ const Start = () => {
     
 
     const { user} = useContext(AuthContext);
-
+   
+    
     if(d.getMinutes() < 10) {
         minutes="0"+d.getMinutes();
     } else {
@@ -50,9 +51,9 @@ const Start = () => {
             </div>
             <div className="terminal-bot">
                 {/* Welcome message */}
-                {user ? <p className="terminal-prompt last-login fadeIn delay-2">Hello  {user.name}! Ready for the Multiplication Game?</p>: <p className="terminal-prompt last-login fadeIn delay-2">Hello user! Ready for the Multiplication Game? </p>}
+                {user ? <p className="terminal-prompt last-login fadeIn delay-2">Hello  {user.name[0].toUpperCase() + user.name.substr(1)}! Ready for the Multiplication Game?</p>: <p className="terminal-prompt last-login fadeIn delay-2">Hello friend! Ready for the Multiplication Game? </p>}
                
-                <p className="terminal-prompt fadeIn delay-4_5"><span className="terminal-green">{d.getHours()}:{minutes}</span> Please enter a multiplication table limit</p>
+                <p className="terminal-prompt fadeIn delay-3_5"><span className="terminal-green">{d.getHours()}:{minutes}</span> Please enter a multiplication table limit</p>
                 <p className="terminal-prompt fadeIn delay-4_5"><span className="terminal-green">{d.getHours()}:{minutes}</span>
                 &nbsp;
                 <label htmlFor="enter_multiplication_table_limit"></label>

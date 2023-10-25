@@ -12,13 +12,4 @@
     text-align: center;
   }
   
-  .canceller{
-    position: absolute;
-    cursor: pointer;
-    color: aliceblue;
-    font-weight: 200;
-    font-size: 50px;
-    top: -2px;
-    right: 2px;
-  }
-  
+ 

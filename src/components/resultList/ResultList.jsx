@@ -8,20 +8,19 @@ const ResultList =(props)=>{
  
   return (
     <div className="result-tray"> 
-      <span onClick={props.onCancel} className="canceller">&times;</span>
-      
+           
     <ul className="results-list">
       {props.results.map((result) => (
         <ResultItem
           key={result._id}
           score={result.score}
-          questions={result.questionCount}
+          numOfQuestions={result.questionCount}
           time={result.createdAt}
         />
       ))}
     </ul>
     
-    <Button onClick={props.onCancel}>Close</Button>
+    <Button onClick={props.onCancel}>Got it!</Button>
     </div>
   );
 };

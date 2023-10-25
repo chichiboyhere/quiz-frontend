@@ -5,7 +5,7 @@ import Quiz from "./components/quiz/Quiz";
 import End from "./components/end/End";
 import {QuizContext} from '../../context/QuizContext';
 import './multiplicationGame.css';
-
+import EndGuest from "./components/end/EndGuest";
 
 
 const MultiplicationGame = () => {
@@ -21,6 +21,7 @@ const MultiplicationGame = () => {
       {gameState === "start" && <Start/>}
       {gameState === "quiz" && <Quiz/>}
       {gameState === "end" && <End/>}
+      {gameState === "endGuest" && <EndGuest/>}
     </QuizContext.Provider>
   </div>
 };
