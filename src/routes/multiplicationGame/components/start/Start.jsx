@@ -74,7 +74,7 @@ const Start = () => {
                 </div>
                 <div className="mt-10 terminal-prompt terminal-text terminal-start">
                 <p className="terminal-green fadeIn delay-10">{d.getHours()}:{minutes}
-                    <Link to="/"><button  className="fadeIn delay-10_5 startBtn button-transition">Menu</button></Link>
+                    <Link to="/menu"><button  className="fadeIn delay-10_5 startBtn button-transition">Menu</button></Link>
                 </p>
                 </div>
             </div>

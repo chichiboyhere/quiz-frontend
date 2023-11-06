@@ -10,12 +10,14 @@ import useFetch from '../../../../hooks/useFetch';
 
 const End = () => {
     const [error, setError] = useState(false);
+    const [saved, setSaved] = useState(false);
     const { gameState, setGameState } = useContext(QuizContext);
     const { score, setScore } = useContext(QuizContext);
     const { timer, setTimer } = useContext(QuizContext);
     const { enteredTable, setEnteredTable } = useContext(QuizContext);
     const { verdict, setVerdict } = useContext(QuizContext);
     const { questionCounter, setQuestionCounter } = useContext(QuizContext);
+    
 
    
 
@@ -77,7 +79,7 @@ const End = () => {
       };
 
       await axios.post("/multiplicationResult/postResult", newPost);
-      
+      setSaved(true)
       navigate("/multiplication")
     } catch (err) {
       console.log(err);
@@ -138,16 +140,18 @@ const End = () => {
                 {/* Save Result */}
                 <div className="mt-25 terminal-prompt terminal-text">
                     <p className="terminal-green">{d.getHours()}:{minutes}</p>
-                    <p className="pl-7">Want to save the result? <button onClick={handleSave} className="startBtn button-transition">Save Result</button></p>
+                    <p className="pl-7">Want to save the result? <button disabled={saved} onClick={handleSave} className="startBtn button-transition">Save Result</button></p>
                 </div>
 
                 <div className="mt-25 terminal-prompt terminal-text">
-                   <Link to ="/"> <p className="terminal-green">{d.getHours()}:{minutes} <button  className="startBtn button-transition">Back to Menu</button></p> </Link>   
-                </div>
+                  <p className="terminal-green">{d.getHours()}:{minutes}</p>
+                  <p className="pl-7"><Link to="/menu"><button className="startBtn button-transition">Back to Menu</button></Link></p>
+              </div>
                
                 <div className="listResult">
                
-                {data.length === 0 ? <p style={{color:"white", margin: "auto"}}>No results</p>: <ResultDisplay results={data} /> }
+                {data.length === 0 ? <div className="mt-25 terminal-prompt terminal-text">
+                  <p className="terminal-green">{d.getHours()}:{minutes} No results</p></div>: <ResultDisplay results={data} /> }
               </div> 
             </div>
         </div>

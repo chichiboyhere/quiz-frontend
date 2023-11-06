@@ -11,7 +11,7 @@ const ResultItem =(props)=> {
       <div className="result-item__description">
         <h2>Score: {props.score}/{props.numOfQuestions}</h2>
         
-        <div className="result-item__speed"> Speed:{(props.score /60).toFixed(2)} </div>
+        <div className="result-item__speed"> Speed: {(props.score /60).toFixed(2)} </div>
       </div>
     </Card>
    </li>

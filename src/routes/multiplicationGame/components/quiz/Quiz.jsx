@@ -56,7 +56,7 @@ const Quiz = () => {
     const { user} = useContext(AuthContext);
     useEffect(() => {
         
-        //timer for quiz - when timer reach 0 end screen appear
+        //timer for quiz - when timer reach 0 "end screen" appears
         const timeOut = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
         if (timeOut == 0 && user) {
             setGameState("end");
@@ -76,7 +76,7 @@ const Quiz = () => {
 
     
 
-    //restart quiz - go back to main screen, set score to 0 and counter to 100 seconds
+    //restart quiz - go back to main screen, set score to 0 and counter to 60 seconds
     const restartQuiz = () => {
         setScore(0);
         setTimer(60);

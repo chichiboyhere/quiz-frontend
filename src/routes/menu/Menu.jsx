@@ -1,18 +1,11 @@
-import { Link, useNavigate} from "react-router-dom";
-import { useContext } from "react";
+import { Link} from "react-router-dom";
 import "./menu.css";
-import { AuthContext } from "../../context/AuthContext";
+
 
 
 const Menu = () => {
 
-const { user, dispatch} = useContext(AuthContext);
-const navigate = useNavigate();
 
-const handleLogout = () => {
-    dispatch({ type: "LOGOUT"});
-    navigate("/");
-};
     return(
         <div className="menuTray">
             <h1>Menu</h1>
@@ -21,22 +14,18 @@ const handleLogout = () => {
                     Multiplication Game
                 </Link>
             </div>
-            {user ? <div onClick={handleLogout} className="menu">
-          Logout
-        </div>: (
+        
            <div className="menu">
-                
-           <Link to ="/login">
-               Login
-           </Link>
-         </div>
-          )}
-           
-            <div className="menu">
-               <Link to ="/register">
-                    Register
+               <Link to ="/arithmeticLevelOne">
+                   Arithmetic Level One
                </Link>
             </div>
+            <div className="menu">
+               <Link to ="/arithmeticLevelTwo">
+                   Arithmetic Level Two
+               </Link>
+            </div>
+          
            
         </div>
     )

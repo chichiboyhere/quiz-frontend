@@ -109,17 +109,16 @@ const EndGuest = () => {
                   <p className="pl-7">Not satisfied? <button onClick={() => { reStart(); }} className="startBtn button-transition">Try again</button></p>
               </div>
               
-              
-              <Link to="/login"><button className="startBtn button-transition">Login to Save Result</button></Link>
-
               <div className="mt-25 terminal-prompt terminal-text">
-                 <Link to ="/"> <p className="terminal-green">{d.getHours()}:{minutes} <button  className="startBtn button-transition">Back to Menu</button></p> </Link>   
+                  <p className="terminal-green">{d.getHours()}:{minutes}</p>
+                  <p className="pl-7"><Link to="/login"><button className="startBtn button-transition">Login to Save Result</button></Link></p>
               </div>
-             
-              <div className="listResult">
-             
-             
-        </div> 
+              
+              <div className="mt-25 terminal-prompt terminal-text">
+                  <p className="terminal-green">{d.getHours()}:{minutes}</p>
+                  <p className="pl-7"><Link to="/"><button className="startBtn button-transition">Back to Menu</button></Link></p>
+              </div>
+              
           </div>
       </div>
   </div>

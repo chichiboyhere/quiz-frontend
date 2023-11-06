@@ -4,6 +4,13 @@
 	align-items: center;
 	justify-content: center;
   }
+
+  .register p{
+	color: white;
+  }
+  .register a{
+	color: whitesmoke;
+  }
   
   .rContainer {
 	display: flex;
@@ -40,9 +47,9 @@
 	display: block;
 	background-color: red;
 	color: white;
-	width: fit-content;
-	height: 50px;
-	padding: 5px;
+	width: 300px;
+	padding: 10px;
+	margin: 6px;
 }
 
 .success {
@@ -53,3 +60,11 @@
 	height: 50px;
 	padding: 5px;
 }
+
+@media screen and (max-width: 960px) {
+ 
+	.rButton {
+	  display: block;
+	  }
+  }
+  
