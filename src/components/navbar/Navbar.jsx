@@ -1,13 +1,13 @@
-import React, { useState} from 'react';
+import React, { useState, useContext} from 'react';
 import { Button } from '../navButton/Button';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './navbar.css';
 import Dropdown from '../dropdown/Dropdown';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars, faTimes
 } from "@fortawesome/free-solid-svg-icons";
-
+import { AuthContext } from '../../context/AuthContext';
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -16,7 +16,13 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
  
+  const { user, dispatch} = useContext(AuthContext);
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT"});
+    navigate("/");
+} 
 
   const onMouseEnter = () => {
     if (window.innerWidth < 960) {
@@ -82,13 +88,14 @@ function Navbar() {
             </Link>
           </li>
           <li>
+            {user? <button className='nav-links-mobile' onClick={handleLogout}>Logout</button>:
             <Link
-              to='/login'
-              className='nav-links-mobile'
-              onClick={closeMobileMenu}
-            >
-              Login
-            </Link>
+            to='/login'
+            className='nav-links-mobile'
+            onClick={closeMobileMenu}
+          >
+            Login
+          </Link>}
           </li>
          
        

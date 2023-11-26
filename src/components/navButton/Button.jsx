@@ -6,6 +6,7 @@ import { AuthContext } from '../../context/AuthContext';
 export function Button() {
   const { user, dispatch} = useContext(AuthContext);
   const navigate = useNavigate();
+  
   const handleLogout = () => {
     dispatch({ type: "LOGOUT"});
     navigate("/");
@@ -13,9 +14,9 @@ export function Button() {
 
   return (
     <>
-    {user? <button className='btn' onClick={handleLogout}>Logout</button>:
+    {user? <button className='btnAuth' onClick={handleLogout}>Logout</button>:
     <Link to='/login'>
-      <button className='btn'>Login</button>
+      <button className='btnAuth'>Login</button>
     </Link>}
     </>
   );

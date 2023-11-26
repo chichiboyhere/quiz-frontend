@@ -9,7 +9,7 @@ import ResultDisplay from '../../../../components/resultDisplay/ResultDisplay';
 import useFetch from '../../../../hooks/useFetch';
 
 const End = () => {
-    const [error, setError] = useState(false);
+    // const [error, setError] = useState(false);
     const [saved, setSaved] = useState(false);
     const { gameState, setGameState } = useContext(QuizContext);
     const { score, setScore } = useContext(QuizContext);
@@ -80,16 +80,17 @@ const End = () => {
 
       await axios.post("/multiplicationResult/postResult", newPost);
       setSaved(true)
-      navigate("/multiplication")
+      navigate("/multiplication");
+     
     } catch (err) {
       console.log(err);
-      setError(true);
+      // setError(true);
     }
   };
 
- const userId = user._id
+  const userId = user._id
+  const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
   
- const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
 
       return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
