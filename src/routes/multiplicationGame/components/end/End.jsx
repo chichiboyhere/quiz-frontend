@@ -78,7 +78,7 @@ const End = () => {
 	     user:user
       };
 
-      await axios.post("https://mathquiz-7uck-api.onrender.com/multiplicationResult/postResult", newPost);
+      await axios.post("https://mathquiz-gold-api.onrender.com/multiplicationResult/postResult", newPost);
       setSaved(true)
       navigate("/multiplication");
      
@@ -89,7 +89,7 @@ const End = () => {
   };
 
   const userId = user._id
-  const { data } = useFetch(`https://mathquiz-7uck-api.onrender.com/multiplicationResult/getResults/${userId}`);
+  const { data } = useFetch(`https://mathquiz-gold-api.onrender.com/multiplicationResult/getResults/${userId}`);
   
 
       return <div className="End fadeIn delay-0_3">
