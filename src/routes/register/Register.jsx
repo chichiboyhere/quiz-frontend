@@ -51,7 +51,7 @@ export default function Register() {
 	   name: name 
       };
 
-      const response = await axios.post("/auth/register", newUser);
+      const response = await axios.post("https://mathquiz-7uck-api.onrender.com/auth/register", newUser);
 	  if (response.status === 422 || response.status === 401) {
 		setAutherr(true);
 		console.log(response);
