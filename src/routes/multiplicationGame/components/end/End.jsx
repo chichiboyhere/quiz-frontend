@@ -91,16 +91,16 @@ const End = () => {
   };
 
   const userId = user._id
-  const { data } = useFetch(`${url}/multiplicationResult/getResults/${userId}`);
+  //const { data } = useFetch(`${url}/multiplicationResult/getResults/${userId}`);
   
 
   // Fetching message from backend on mount
-  // useEffect(() => {
-  //   fetch(`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setMessage(data.message));
-  // }, [`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`]);
-  //   console.log(message);
+  useEffect(() => {
+    fetch(`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`)
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, [`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`]);
+    console.log(message);
 
       return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
@@ -161,8 +161,8 @@ const End = () => {
                
                 <div className="listResult">
                
-                {data.length === 0 ? <div className="mt-25 terminal-prompt terminal-text">
-                  <p className="terminal-green">{d.getHours()}:{minutes} No results</p></div>: <ResultDisplay results={data} /> }
+                {message.length === 0 ? <div className="mt-25 terminal-prompt terminal-text">
+                  <p className="terminal-green">{d.getHours()}:{minutes} No results</p></div>: <ResultDisplay results={message} /> }
               </div> 
             </div>
         </div>
