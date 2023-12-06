@@ -80,7 +80,7 @@ const End = () => {
 	     user:user
       };
 
-      await axios.post("/multiplicationResult/postResult", newPost);
+      await axios.post(`${url}/multiplicationResult/postResult`, newPost);
       setSaved(true)
       navigate("/multiplication");
      
@@ -91,7 +91,7 @@ const End = () => {
   };
 
   const userId = user._id
-  const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
+  const { data } = useFetch(`${url}/multiplicationResult/getResults/${userId}`);
   
 
   // Fetching message from backend on mount
