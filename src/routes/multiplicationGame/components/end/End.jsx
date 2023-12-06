@@ -18,7 +18,7 @@ const End = () => {
     const { verdict, setVerdict } = useContext(QuizContext);
     const { questionCounter, setQuestionCounter } = useContext(QuizContext);
     
-    //const [message, setMessage] = useState("");
+    const [message, setMessage] = useState("");
      
     const url ="https://mathquiz-gold-api.onrender.com/backend"
     
