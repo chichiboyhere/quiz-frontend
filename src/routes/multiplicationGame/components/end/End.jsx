@@ -19,7 +19,9 @@ const End = () => {
     const { questionCounter, setQuestionCounter } = useContext(QuizContext);
     
     //const [message, setMessage] = useState("");
-   
+     
+    const url ="https://mathquiz-gold-api.onrender.com/backend"
+    
 
     const d = new Date();
     var minutes;
@@ -78,7 +80,7 @@ const End = () => {
 	     user:user
       };
 
-      await axios.post("https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/postResult", newPost);
+      await axios.post("/multiplicationResult/postResult", newPost);
       setSaved(true)
       navigate("/multiplication");
      
@@ -89,7 +91,7 @@ const End = () => {
   };
 
   const userId = user._id
-  const { data } = useFetch(`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`);
+  const { data } = useFetch(`/multiplicationResult/getResults/${userId}`);
   
 
   // Fetching message from backend on mount
