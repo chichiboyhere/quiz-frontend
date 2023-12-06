@@ -102,9 +102,6 @@ const End = () => {
   }, [`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`]);
 
 
-    
-  
-
       return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
             <div className="terminal-top ">
@@ -165,8 +162,8 @@ const End = () => {
                 <div className="listResult">
                
                 {message.length === 0 ? <div className="mt-25 terminal-prompt terminal-text">
-                  <p className="terminal-green">{d.getHours()}:{minutes} No results</p></div>: <h2>{message}</h2> }
-             {/*  <ResultDisplay results={message} /> */}
+                  <p className="terminal-green">{d.getHours()}:{minutes} No results</p></div>: <ResultDisplay results={message} />}
+             {/*   */}
               </div> 
             </div>
         </div>
