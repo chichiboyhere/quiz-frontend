@@ -93,14 +93,18 @@ const End = () => {
   const userId = user._id
   //const { data } = useFetch(`${url}/multiplicationResult/getResults/${userId}`);
   
-
+ console.log(userId)
   // Fetching message from backend on mount
   useEffect(() => {
     fetch(`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, [`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`]);
-    console.log(message);
+
+  
+  console.log(`https://mathquiz-gold-api.onrender.com/backend/multiplicationResult/getResults/${userId}`)    
+  console.log(message);
+  console.log(message[3])
 
       return <div className="End fadeIn delay-0_3">
         <div className="terminal-wrapper">
